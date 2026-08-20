@@ -270,9 +270,13 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .detail-card i {
+        .detail-card i.fa-calendar-alt, .detail-card i.fa-map-marker-alt {
             font-size: 2.5rem;
             color: var(--secondary-color);
             margin-bottom: 1.5rem;
@@ -565,11 +569,16 @@
                     <p>Sábado, 15 de Noviembre</p>
                     <p><strong> de 16:00 a 19:00 hs</strong></p>
                 </div>
+                <!-- TARJETA DEL LUGAR CON EL BOTÓN INTEGRADO -->
                 <div class="detail-card">
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>El Lugar</h3>
                     <p>Salón "Palace kids"</p>
                     <p>Avda.Las Flores 2020, Montevideo</p>
+                    
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-location" style="margin-top: 1.5rem; font-size: 0.95rem; padding: 0.8rem 1.2rem; width: auto;">
+                        <i class="fas fa-map-marked-alt"></i> Cómo llegar al lugar
+                    </a>
                 </div>
             </div>
         </section>
@@ -610,11 +619,8 @@
             <h2 style="font-size: 2.2rem; color: #1e40af;">¡Espero verte!</h2>
             <p style="margin-bottom: 25px; color: #334155;">Por favor, confirma tu asistencia para que podamos preparar todo.</p>
             
-            <a href="https://maps.google.com" target="_blank" class="btn btn-location">
-                <i class="fas fa-map-marked-alt"></i> Cómo llegar al lugar
-            </a>
-            
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdl6JtvpaPECeTHp0fhL_-A64SGSjfk-569JqZCTUjLRQBxqA/viewform?usp=sharing&ouid=108226770807790576500">
+            <!-- BOTÓN DE CONFIRMAR ASISTENCIA CORREGIDO -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdl6JtvpaPECeTHp0fhL_-A64SGSjfk-569JqZCTUjLRQBxqA/viewform?usp=sharing&ouid=108226770807790576500" target="_blank" class="btn btn-rsvp">
                 <i class="fas fa-paper-plane"></i> Confirmar Asistencia
             </a>
         </section>
