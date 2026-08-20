@@ -26,12 +26,13 @@
             box-sizing: border-box;
         }
 
-        /* Fondo general con textura sutil de puntitos para un look premium */
+        /* --- Fondo general degradado (Azules y Celestes) --- */
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f8fafc;
-            background-image: radial-gradient(rgba(91, 146, 229, 0.15) 1px, transparent 1px);
-            background-size: 25px 25px;
+            /* Degradado hermoso que ocupa toda la pantalla */
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 40%, #e0f2fe 70%, #bae6fd 100%);
+            /* Background fixed hace que el fondo no se repita ni se estire feo al hacer scroll */
+            background-attachment: fixed; 
             color: var(--text-dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -75,20 +76,9 @@
             visibility: visible;
         }
 
-        /* --- Estrellas de fondo generales --- */
+        /* --- Estrellas Destellantes en TODA la página --- */
         .stars {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* --- Estrellas Destellantes de la Portada --- */
-        .cover-stars {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -98,20 +88,20 @@
             overflow: hidden;
         }
         
-        .cover-star {
+        .star-bg {
             position: absolute;
             background: #fff;
             border-radius: 50%;
-            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff; /* Efecto destello brillante */
             animation: destello infinite alternate;
         }
-        
+
         @keyframes destello {
             0% { opacity: 0.1; transform: scale(0.5); }
-            100% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0.95; transform: scale(1.5); }
         }
 
-        /* --- Header / Portada (Nuevo fondo llamativo y pastel) --- */
+        /* --- Header / Portada --- */
         header {
             min-height: 100vh;
             display: flex;
@@ -122,11 +112,6 @@
             position: relative;
             z-index: 1;
             padding: 20px;
-            /* Degradado de cielo mágico pastel */
-            background: linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 40%, #e0f2fe 70%, #f8fafc 100%);
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 10px 30px rgba(91, 146, 229, 0.15);
         }
 
         .hero-image-container {
@@ -185,41 +170,31 @@
         .countdown-wrapper {
             position: relative;
             z-index: 1;
-            padding: 5rem 1rem 3rem 1rem; /* Espacio extra arriba para el zorro */
+            padding: 5rem 1rem 3rem 1rem;
         }
 
         .countdown-container {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.65);
             border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 20px;
-            padding: 3.5rem 1.5rem 2.5rem; /* Espacio interno extra arriba para que el zorro no tape el título */
+            padding: 3.5rem 1.5rem 2.5rem; 
             box-shadow: 0 15px 35px rgba(91, 146, 229, 0.15), inset 0 0 15px rgba(255,255,255,1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             margin: 0 auto;
             max-width: 650px;
             text-align: center;
-            position: relative; /* Muy importante para que el zorro se posicione respecto a esta caja */
+            position: relative; 
         }
 
-        /* =================================================================
-           ZORRO APOYADO EN LA CUENTA REGRESIVA
-           Aquí puedes modificar fácilmente su aspecto sin romper el diseño
-           ================================================================= */
+        /* --- Zorro apoyado --- */
         .zorro-decor {
             position: absolute;
-            
-            /* 1. TAMAÑO: Aumenta o disminuye los píxeles para cambiar el tamaño (siempre será proporcional) */
             width: 130px; 
             height: auto;
-            
-            /* 2. POSICIÓN VERTICAL: Cambia este número. Más negativo = más arriba. Menos negativo = más abajo */
             top: -75px; 
-            
-            /* 3. POSICIÓN HORIZONTAL: 50% lo mantiene centrado. No lo cambies salvo que lo quieras a un lado */
             left: 50%;
             transform: translateX(-50%);
-            
             z-index: 2;
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
         }
@@ -235,7 +210,7 @@
             display: flex;
             justify-content: center;
             gap: 1.2rem;
-            flex-wrap: nowrap; /* Fuerza a que estén en una sola línea */
+            flex-wrap: nowrap; 
         }
 
         .time-box {
@@ -255,7 +230,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 12px; /* Cambiado de 50% a 12px para formar CUBOS delicados */
+            border-radius: 12px; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.08), inset 0 0 10px rgba(212, 175, 55, 0.15);
             border: 1.5px solid rgba(212, 175, 55, 0.6);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
@@ -266,7 +241,7 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #3b82f6;
+            color: #1e40af;
             font-weight: 600;
         }
 
@@ -287,11 +262,13 @@
         }
 
         .detail-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
             padding: 2.5rem 1.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.05);
             border: 1px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             transition: transform 0.3s ease;
         }
 
@@ -308,7 +285,7 @@
         }
         
         .detail-card p {
-            color: #475569;
+            color: #334155;
             line-height: 1.6;
         }
 
@@ -492,31 +469,16 @@
             z-index: 1;
         }
 
-        /* Estrellitas fondo general */
-        .star-bg {
-            position: absolute;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle 2s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            from { opacity: 0.1; transform: scale(0.8); }
-            to { opacity: 0.5; transform: scale(1.2); }
-        }
-
         /* Ajustes específicos para móviles */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             
-            /* Ajuste de los cubos para que siempre entren en 1 línea en celular */
             #countdown { gap: 0.5rem; }
             .time-box span {
                 width: 55px;
                 height: 55px;
                 font-size: 1.6rem;
-                border-radius: 8px; /* Cubos un poquito más rectos en móvil */
+                border-radius: 8px; 
             }
             .time-box p {
                 font-size: 0.7rem;
@@ -527,7 +489,6 @@
                 padding: 3rem 1rem 2rem 1rem;
             }
             
-            /* Ajuste del zorro en celular si es necesario */
             .zorro-decor {
                 width: 100px;
                 top: -55px;
@@ -542,22 +503,19 @@
 </head>
 <body>
 
-    <!-- MÚSICA DE FONDO -->
+    <!-- MÚSICA DE FONDO (Actualizada a "musica.mp3") -->
     <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=lullaby-music-box-9447.mp3" type="audio/mpeg">
+        <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
     <div class="music-control" id="musicBtn">
         <i class="fas fa-volume-mute" id="musicIcon"></i>
     </div>
 
-    <!-- Fondo de estrellas general de toda la página -->
+    <!-- Contenedor único de estrellas destellantes para toda la página -->
     <div class="stars" id="stars-container"></div>
 
     <header>
-        <!-- Estrellitas destellantes exclusivas de la portada -->
-        <div id="cover-stars" class="cover-stars"></div>
-
         <div class="hero-image-container fade-in-section is-visible">
             <img src="4f58ef4f546bf1c9ecd7a29e761b6be7-removebg-preview.png" alt="El Principito" style="max-width: 350px; width: 100%;" />
         </div>
@@ -572,10 +530,7 @@
         <!-- CUENTA REGRESIVA CON ZORRO INTEGRADO -->
         <section class="countdown-wrapper fade-in-section">
             <div class="countdown-container">
-                
-                <!-- EL ZORRO: Ya está posicionado encima de este cuadro y sin moverse -->
                 <img src="zorro.png" alt="Zorro de El Principito" class="zorro-decor">
-
                 <h2>Faltan solo...</h2>
                 <div id="countdown">
                     <div class="time-box">
@@ -624,21 +579,17 @@
 
         <section class="gallery-section fade-in-section">
             <h2>Mis primeros momentos</h2>
-            <p style="margin-bottom: 1.5rem; color: #475569; font-size: 0.95rem;">(Desliza para ver más y toca para ampliar)</p>
+            <p style="margin-bottom: 1.5rem; color: #334155; font-size: 0.95rem;">(Desliza para ver más y toca para ampliar)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <!-- FOTOS DE LA GALERÍA -->
-                    <div class="swiper-slide"><img src="foto00.jpg" alt="Foto 1" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="foto1.jpg" alt="Foto 2" onclick="openModal(this.src)"></div>
+                    <!-- GALERÍA REDUCIDA A 6 FOTOS -->
+                    <div class="swiper-slide"><img src="foto1.jpg" alt="Foto 1" onclick="openModal(this.src)"></div>
+                    <div class="swiper-slide"><img src="foto2.jpg" alt="Foto 2" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="foto3.jpg" alt="Foto 3" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="foto4.jpg" onclick="openModal(this.src)"></div>
+                    <div class="swiper-slide"><img src="foto4.jpg" alt="Foto 4" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="foto5.jpg" alt="Foto 5" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/7dd3fc/1e40af?text=Foto+de+Lucas+6" alt="Foto 6" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/e0f2fe/5b92e5?text=Foto+de+Lucas+7" alt="Foto 7" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/bae6fd/1e3a8a?text=Foto+de+Lucas+8" alt="Foto 8" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/7dd3fc/1e40af?text=Foto+de+Lucas+9" alt="Foto 9" onclick="openModal(this.src)"></div>
-                    <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/e0f2fe/5b92e5?text=Foto+de+Lucas+10" alt="Foto 10" onclick="openModal(this.src)"></div>
+                    <div class="swiper-slide"><img src="foto6.jpg" alt="Foto 6" onclick="openModal(this.src)"></div>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next" style="color: var(--primary-color);"></div>
@@ -657,13 +608,13 @@
 
         <section class="buttons-section fade-in-section">
             <h2 style="font-size: 2.2rem; color: #1e40af;">¡Espero verte!</h2>
-            <p style="margin-bottom: 25px; color: #475569;">Por favor, confirma tu asistencia para que podamos preparar todo.</p>
+            <p style="margin-bottom: 25px; color: #334155;">Por favor, confirma tu asistencia para que podamos preparar todo.</p>
             
             <a href="https://maps.google.com" target="_blank" class="btn btn-location">
                 <i class="fas fa-map-marked-alt"></i> Cómo llegar al lugar
             </a>
             
-            <a href="https://forms.google.com" target="_blank" class="btn btn-rsvp">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdl6JtvpaPECeTHp0fhL_-A64SGSjfk-569JqZCTUjLRQBxqA/viewform?usp=sharing&ouid=108226770807790576500">
                 <i class="fas fa-paper-plane"></i> Confirmar Asistencia
             </a>
         </section>
@@ -678,43 +629,31 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script>
-        // --- 1. Generador de Estrellas Generales ---
+        // --- 1. Generador de Estrellas Destellantes para toda la página ---
         function createStars() {
             const container = document.getElementById('stars-container');
-            const count = 40; 
+            const count = 75; // Cantidad de estrellas en pantalla
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star-bg');
+                
+                // Posicionamiento aleatorio en todo el ancho y alto del viewport
                 star.style.left = `${Math.random() * 100}vw`;
                 star.style.top = `${Math.random() * 100}vh`;
-                star.style.width = `${Math.random() * 4 + 1}px`;
-                star.style.height = star.style.width;
-                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                
+                // Tamaño y animaciones aleatorias para mayor realismo
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDuration = `${Math.random() * 1.5 + 0.8}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
                 container.appendChild(star);
             }
         }
         createStars();
 
-        // --- 2. Generador de Estrellas Destellantes (Portada) ---
-        function createCoverStars() {
-            const container = document.getElementById('cover-stars');
-            const count = 50; 
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.classList.add('cover-star');
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                const size = Math.random() * 3 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
-                star.style.animationDelay = `${Math.random() * 2}s`;
-                container.appendChild(star);
-            }
-        }
-        createCoverStars();
-
-        // --- 3. Cuenta Regresiva ---
+        // --- 2. Cuenta Regresiva ---
         const birthdayDate = new Date(2026, 10, 15, 16, 0, 0).getTime();
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
@@ -732,7 +671,7 @@
             document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // --- 4. Inicializar Carrusel (Swiper) ---
+        // --- 3. Inicializar Carrusel (Swiper) ---
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             grabCursor: true,
@@ -759,7 +698,7 @@
             },
         });
 
-        // --- 5. Lógica del Modal (Lightbox) y Botón "Atrás" ---
+        // --- 4. Lógica del Modal (Lightbox) y Botón "Atrás" ---
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
         let isModalOpen = false;
@@ -792,7 +731,7 @@
             }
         });
 
-        // --- 6. Animación al Scroll ---
+        // --- 5. Animación al Scroll ---
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -806,7 +745,7 @@
             if(!section.classList.contains('is-visible')) observer.observe(section);
         });
 
-        // --- 7. Control de Música con Autoplay ---
+        // --- 6. Control de Música ---
         const audio = document.getElementById("bgMusic");
         const musicBtn = document.getElementById("musicBtn");
         const musicIcon = document.getElementById("musicIcon");
@@ -818,7 +757,7 @@
                     musicIcon.classList.remove('fa-volume-mute');
                     musicIcon.classList.add('fa-volume-up');
                 }).catch(error => {
-                    console.log("Autoplay prevenido. El usuario debe interactuar.");
+                    console.log("Autoplay prevenido por el navegador. El usuario debe interactuar.");
                 });
             }
         });
