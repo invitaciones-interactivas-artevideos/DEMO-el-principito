@@ -26,9 +26,12 @@
             box-sizing: border-box;
         }
 
+        /* Fondo general con textura sutil de puntitos para un look premium */
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            background-color: #f8fafc;
+            background-image: radial-gradient(rgba(91, 146, 229, 0.15) 1px, transparent 1px);
+            background-size: 25px 25px;
             color: var(--text-dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -52,7 +55,6 @@
             100% { transform: translateY(0px) rotate(0deg); }
         }
         
-        /* Animación especial para el avión volando */
         @keyframes flyAcross {
             0% { transform: translateY(0) translateX(-15px) rotate(-5deg); }
             50% { transform: translateY(-25px) translateX(15px) rotate(5deg); }
@@ -95,19 +97,21 @@
             z-index: 0;
             overflow: hidden;
         }
+        
         .cover-star {
             position: absolute;
             background: #fff;
             border-radius: 50%;
-            box-shadow: 0 0 10px #fff, 0 0 20px #fff; /* Efecto destello brillante */
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
             animation: destello infinite alternate;
         }
+        
         @keyframes destello {
             0% { opacity: 0.1; transform: scale(0.5); }
             100% { opacity: 1; transform: scale(1.5); }
         }
 
-        /* --- Header --- */
+        /* --- Header / Portada (Nuevo fondo llamativo y pastel) --- */
         header {
             min-height: 100vh;
             display: flex;
@@ -118,6 +122,11 @@
             position: relative;
             z-index: 1;
             padding: 20px;
+            /* Degradado de cielo mágico pastel */
+            background: linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 40%, #e0f2fe 70%, #f8fafc 100%);
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(91, 146, 229, 0.15);
         }
 
         .hero-image-container {
@@ -131,33 +140,33 @@
         .hero-image-container img {
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
         }
 
         h1 {
             font-size: 3.2rem;
             margin-bottom: 0.5rem;
             color: #1e3a8a;
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.9);
         }
 
         .subtitle {
             font-size: 1.3rem;
             font-weight: 400;
             margin-bottom: 2rem;
-            color: #3b82f6;
+            color: #1e40af;
             font-family: 'Playfair Display', serif;
             font-style: italic;
             max-width: 80%;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         /* --- Elementos Decorativos Distribuidos --- */
-        /* Clase base para imágenes flotantes */
         .deco-img {
             display: block;
-            margin: 2rem auto; /* Centrado automático */
+            margin: 2rem auto;
             animation: float 5s ease-in-out infinite;
             position: relative;
             z-index: 1;
@@ -176,20 +185,43 @@
         .countdown-wrapper {
             position: relative;
             z-index: 1;
-            padding: 2rem 1rem;
+            padding: 5rem 1rem 3rem 1rem; /* Espacio extra arriba para el zorro */
         }
 
         .countdown-container {
-            background: rgba(255, 255, 255, 0.45);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 25px;
-            padding: 2.5rem 1rem;
-            box-shadow: 0 8px 32px rgba(91, 146, 229, 0.1);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 3.5rem 1.5rem 2.5rem; /* Espacio interno extra arriba para que el zorro no tape el título */
+            box-shadow: 0 15px 35px rgba(91, 146, 229, 0.15), inset 0 0 15px rgba(255,255,255,1);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             margin: 0 auto;
             max-width: 650px;
             text-align: center;
+            position: relative; /* Muy importante para que el zorro se posicione respecto a esta caja */
+        }
+
+        /* =================================================================
+           ZORRO APOYADO EN LA CUENTA REGRESIVA
+           Aquí puedes modificar fácilmente su aspecto sin romper el diseño
+           ================================================================= */
+        .zorro-decor {
+            position: absolute;
+            
+            /* 1. TAMAÑO: Aumenta o disminuye los píxeles para cambiar el tamaño (siempre será proporcional) */
+            width: 130px; 
+            height: auto;
+            
+            /* 2. POSICIÓN VERTICAL: Cambia este número. Más negativo = más arriba. Menos negativo = más abajo */
+            top: -75px; 
+            
+            /* 3. POSICIÓN HORIZONTAL: 50% lo mantiene centrado. No lo cambies salvo que lo quieras a un lado */
+            left: 50%;
+            transform: translateX(-50%);
+            
+            z-index: 2;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
         }
 
         .countdown-container h2 {
@@ -203,7 +235,7 @@
             display: flex;
             justify-content: center;
             gap: 1.2rem;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* Fuerza a que estén en una sola línea */
         }
 
         .time-box {
@@ -212,19 +244,20 @@
             align-items: center;
         }
 
+        /* Cubos de los números */
         .time-box span {
             font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
             color: #1e3a8a;
-            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(240,249,255,0.7) 100%);
-            width: 85px;
-            height: 85px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            width: 80px;
+            height: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05), inset 0 0 10px rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--secondary-color);
+            border-radius: 12px; /* Cambiado de 50% a 12px para formar CUBOS delicados */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08), inset 0 0 10px rgba(212, 175, 55, 0.15);
+            border: 1.5px solid rgba(212, 175, 55, 0.6);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
@@ -239,7 +272,7 @@
 
         /* --- Detalles del Evento --- */
         .event-details {
-            padding: 3rem 2rem;
+            padding: 2rem 2rem;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -254,11 +287,11 @@
         }
 
         .detail-card {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             padding: 2.5rem 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
             transition: transform 0.3s ease;
         }
 
@@ -285,13 +318,12 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            background: rgba(255,255,255,0.3);
             margin: 2rem 0;
         }
 
         .gallery-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: #1e40af;
         }
 
@@ -309,9 +341,9 @@
             height: 250px;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             cursor: pointer;
-            border: 3px solid white;
+            border: 4px solid white;
         }
 
         .swiper-slide img {
@@ -319,11 +351,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .swiper-slide:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .swiper-pagination-bullet-active {
@@ -397,7 +429,7 @@
             transition: all 0.3s ease;
             width: 100%;
             max-width: 320px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -411,7 +443,8 @@
         .btn-location:hover {
             background-color: #1e40af;
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.2);
         }
 
         .btn-rsvp {
@@ -422,8 +455,8 @@
 
         .btn-rsvp:hover {
             background-color: #b8972e;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
         }
 
         /* --- Control de Música --- */
@@ -431,18 +464,18 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             background-color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             z-index: 1000;
             cursor: pointer;
             color: var(--primary-color);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             border: 2px solid var(--secondary-color);
             transition: transform 0.3s ease;
         }
@@ -462,29 +495,44 @@
         /* Estrellitas fondo general */
         .star-bg {
             position: absolute;
-            background: white;
+            background: var(--secondary-color);
             border-radius: 50%;
-            opacity: 0.5;
+            opacity: 0.3;
             animation: twinkle 2s infinite alternate;
         }
 
         @keyframes twinkle {
             from { opacity: 0.1; transform: scale(0.8); }
-            to { opacity: 0.8; transform: scale(1.2); }
+            to { opacity: 0.5; transform: scale(1.2); }
         }
 
+        /* Ajustes específicos para móviles */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
+            
+            /* Ajuste de los cubos para que siempre entren en 1 línea en celular */
+            #countdown { gap: 0.5rem; }
             .time-box span {
-                width: 65px;
-                height: 65px;
-                font-size: 1.8rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+                border-radius: 8px; /* Cubos un poquito más rectos en móvil */
             }
+            .time-box p {
+                font-size: 0.7rem;
+                letter-spacing: 1px;
+            }
+            
             .countdown-container {
-                padding: 1.5rem 1rem;
-                border-radius: 15px;
+                padding: 3rem 1rem 2rem 1rem;
             }
-            #countdown { gap: 0.8rem; }
+            
+            /* Ajuste del zorro en celular si es necesario */
+            .zorro-decor {
+                width: 100px;
+                top: -55px;
+            }
+
             .swiper-slide {
                 width: 200px;
                 height: 200px;
@@ -495,7 +543,6 @@
 <body>
 
     <!-- MÚSICA DE FONDO -->
-    <!-- Para cambiar la música, reemplaza el enlace dentro de "src" -->
     <audio id="bgMusic" loop>
         <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=lullaby-music-box-9447.mp3" type="audio/mpeg">
     </audio>
@@ -511,10 +558,6 @@
         <!-- Estrellitas destellantes exclusivas de la portada -->
         <div id="cover-stars" class="cover-stars"></div>
 
-        <!-- ========================================================
-             1. IMAGEN PRINCIPAL DE LA PORTADA
-             - Para cambiar el tamaño, modifica el valor en max-width
-             ======================================================== -->
         <div class="hero-image-container fade-in-section is-visible">
             <img src="4f58ef4f546bf1c9ecd7a29e761b6be7-removebg-preview.png" alt="El Principito" style="max-width: 350px; width: 100%;" />
         </div>
@@ -526,14 +569,13 @@
     </header>
 
     <main>
-        <!-- ========================================================
-             2. PLANETA DECORATIVO (ANTES DE LA CUENTA REGRESIVA)
-             - Para agrandar/achicar, cambia max-width (ej: max-width: 300px;)
-             ======================================================== -->
-        <img src="zorro.png" alt="Planeta" class="deco-img fade-in-section" style="max-width: 250px; opacity: 0.9;">
-
+        <!-- CUENTA REGRESIVA CON ZORRO INTEGRADO -->
         <section class="countdown-wrapper fade-in-section">
             <div class="countdown-container">
+                
+                <!-- EL ZORRO: Ya está posicionado encima de este cuadro y sin moverse -->
+                <img src="zorro.png" alt="Zorro de El Principito" class="zorro-decor">
+
                 <h2>Faltan solo...</h2>
                 <div id="countdown">
                     <div class="time-box">
@@ -556,11 +598,7 @@
             </div>
         </section>
 
-        <!-- ========================================================
-             3. AVIÓN VOLANDO (DEBAJO DE LA CUENTA REGRESIVA)
-             - Ahora es mucho más grande y tiene efecto de vuelo.
-             - Ajusta max-width a tu gusto (ej: max-width: 350px, max-width: 450px)
-             ======================================================== -->
+        <!-- AVIÓN VOLANDO -->
         <img src="av.png" alt="Avión Volando" class="deco-plane-flying fade-in-section" style="max-width: 380px; width: 85%;">
 
         <section class="event-details fade-in-section">
@@ -581,20 +619,16 @@
             </div>
         </section>
         
-        <!-- ========================================================
-             4. PRINCIPITO Y ZORRO SENTADOS (DESPUÉS DEL LUGAR)
-             - Fue agrandada significativamente y mantiene el efecto flotante.
-             - Ajusta max-width para cambiar el tamaño.
-             ======================================================== -->
+        <!-- PRINCIPITO Y ZORRO SENTADOS -->
         <img src="pngwing.com (71).png" alt="Principito y Zorro" class="deco-img fade-in-section" style="max-width: 350px; width: 85%;">
 
         <section class="gallery-section fade-in-section">
             <h2>Mis primeros momentos</h2>
-            <p style="margin-bottom: 1.5rem; color: #475569; font-size: 0.9rem;">(Desliza para ver más y toca para ampliar)</p>
+            <p style="margin-bottom: 1.5rem; color: #475569; font-size: 0.95rem;">(Desliza para ver más y toca para ampliar)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <!-- FOTOS DE LA GALERÍA: Cambia el src="..." por el archivo de tus fotos -->
+                    <!-- FOTOS DE LA GALERÍA -->
                     <div class="swiper-slide"><img src="foto00.jpg" alt="Foto 1" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="foto1.jpg" alt="Foto 2" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="foto3.jpg" alt="Foto 3" onclick="openModal(this.src)"></div>
@@ -618,35 +652,26 @@
             <img class="modal-content" id="modalImg">
         </div>
 
-        <!-- ========================================================
-             5. PRINCIPITO VOLANDO CON LOS PÁJAROS
-             - Se ha dejado esta sola como pediste (se quitó el zorro).
-             - Puedes ajustar el max-width para cambiar el tamaño.
-             ======================================================== -->
+        <!-- PRINCIPITO VOLANDO CON LOS PÁJAROS -->
         <img src="pngwing.com (74).png" alt="Pájaros" class="deco-img fade-in-section" style="max-width: 500px; width: 90%; animation: floatSlow 7s infinite;">
 
         <section class="buttons-section fade-in-section">
             <h2 style="font-size: 2.2rem; color: #1e40af;">¡Espero verte!</h2>
-            <p style="margin-bottom: 20px; color: #475569;">Por favor, confirma tu asistencia para que podamos preparar todo.</p>
+            <p style="margin-bottom: 25px; color: #475569;">Por favor, confirma tu asistencia para que podamos preparar todo.</p>
             
-            <!-- Cambia el link de href por tu link de Google Maps -->
             <a href="https://maps.google.com" target="_blank" class="btn btn-location">
                 <i class="fas fa-map-marked-alt"></i> Cómo llegar al lugar
             </a>
             
-            <!-- Cambia el link de href por tu link de WhatsApp o Formulario -->
             <a href="https://forms.google.com" target="_blank" class="btn btn-rsvp">
                 <i class="fas fa-paper-plane"></i> Confirmar Asistencia
             </a>
         </section>
         
-        <!-- ========================================================
-             6. ROSA DECORATIVA (FINAL DE LA PÁGINA)
-             ======================================================== -->
+        <!-- ROSA DECORATIVA -->
         <img src="pngwing.com (75).png" alt="Rosa" class="deco-img fade-in-section" style="max-width: 150px; border-radius: 15px;">
     </main>
 
-    <!-- Footer vacío según lo solicitado -->
     <footer></footer>
 
     <!-- Swiper JS -->
@@ -673,7 +698,7 @@
         // --- 2. Generador de Estrellas Destellantes (Portada) ---
         function createCoverStars() {
             const container = document.getElementById('cover-stars');
-            const count = 50; // Cantidad de estrellas mágicas en la portada
+            const count = 50; 
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.classList.add('cover-star');
