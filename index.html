@@ -13,11 +13,11 @@
 
     <style>
         :root {
-            --primary-color: #5b92e5; /* Celeste principal */
-            --secondary-color: #d4af37; /* Dorado más elegante */
+            --primary-color: #5b92e5;
+            --secondary-color: #d4af37;
             --text-dark: #2c3e50;
             --text-light: #ffffff;
-            --bg-color: #e0f2fe; /* Fondo celeste pastel */
+            --bg-color: #e0f2fe;
         }
 
         * {
@@ -51,6 +51,13 @@
             50% { transform: translateY(-20px) rotate(2deg); }
             100% { transform: translateY(0px) rotate(0deg); }
         }
+        
+        /* Animación especial para el avión volando */
+        @keyframes flyAcross {
+            0% { transform: translateY(0) translateX(-15px) rotate(-5deg); }
+            50% { transform: translateY(-25px) translateX(15px) rotate(5deg); }
+            100% { transform: translateY(0) translateX(-15px) rotate(-5deg); }
+        }
 
         .fade-in-section {
             opacity: 0;
@@ -66,7 +73,7 @@
             visibility: visible;
         }
 
-        /* --- Estrellas de fondo --- */
+        /* --- Estrellas de fondo generales --- */
         .stars {
             position: fixed;
             top: 0;
@@ -75,6 +82,29 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
+        }
+
+        /* --- Estrellas Destellantes de la Portada --- */
+        .cover-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .cover-star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff; /* Efecto destello brillante */
+            animation: destello infinite alternate;
+        }
+        @keyframes destello {
+            0% { opacity: 0.1; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1.5); }
         }
 
         /* --- Header --- */
@@ -92,9 +122,10 @@
 
         .hero-image-container {
             width: 100%;
-            max-width: 350px;
             margin-bottom: 1rem;
             animation: float 6s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
         }
 
         .hero-image-container img {
@@ -106,7 +137,7 @@
         h1 {
             font-size: 3.2rem;
             margin-bottom: 0.5rem;
-            color: #1e3a8a; /* Azul más oscuro y elegante */
+            color: #1e3a8a;
             text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
         }
 
@@ -117,39 +148,31 @@
             color: #3b82f6;
             font-family: 'Playfair Display', serif;
             font-style: italic;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* --- Elementos Decorativos Distribuidos --- */
+        /* Clase base para imágenes flotantes */
         .deco-img {
-            max-width: 150px;
-            margin: 2rem auto;
             display: block;
+            margin: 2rem auto; /* Centrado automático */
             animation: float 5s ease-in-out infinite;
             position: relative;
             z-index: 1;
         }
-
-        .deco-large {
-            max-width: 85%; /* Agrandado según solicitud */
-            width: 450px;
-            margin: 3rem auto;
-            animation: floatSlow 7s ease-in-out infinite;
-        }
         
-        .deco-planet {
-            max-width: 250px;
-            opacity: 0.9;
+        .deco-plane-flying {
+            display: block;
+            margin: 3rem auto;
+            animation: flyAcross 7s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 1;
+            border-radius: 50%;
         }
 
-        .deco-side-left, .deco-side-right {
-            position: absolute;
-            max-width: 120px;
-            opacity: 0.8;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* --- Cuenta Regresiva Sofisticada --- */
+        /* --- Cuenta Regresiva --- */
         .countdown-wrapper {
             position: relative;
             z-index: 1;
@@ -158,7 +181,7 @@
 
         .countdown-container {
             background: rgba(255, 255, 255, 0.45);
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Borde dorado sutil */
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 25px;
             padding: 2.5rem 1rem;
             box-shadow: 0 8px 32px rgba(91, 146, 229, 0.1);
@@ -172,7 +195,7 @@
         .countdown-container h2 {
             margin-bottom: 2rem;
             font-size: 2.2rem;
-            color: #1e40af; /* Azul profundo elegante, nada de negro */
+            color: #1e40af;
             font-weight: 700;
         }
 
@@ -192,16 +215,16 @@
         .time-box span {
             font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
-            color: #1e3a8a; /* Azul oscuro */
+            color: #1e3a8a;
             background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(240,249,255,0.7) 100%);
             width: 85px;
             height: 85px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 50%; /* Círculos para hacerlo más suave */
+            border-radius: 50%;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05), inset 0 0 10px rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--secondary-color); /* Borde dorado */
+            border: 2px solid var(--secondary-color);
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
@@ -210,7 +233,7 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #3b82f6; /* Celeste oscuro */
+            color: #3b82f6;
             font-weight: 600;
         }
 
@@ -431,15 +454,12 @@
         /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 2rem;
-            color: #64748b;
-            font-size: 0.9rem;
+            padding: 1rem;
             position: relative;
             z-index: 1;
-            background: rgba(255,255,255,0.5);
         }
 
-        /* Estrellitas */
+        /* Estrellitas fondo general */
         .star-bg {
             position: absolute;
             background: white;
@@ -474,36 +494,43 @@
 </head>
 <body>
 
-    <!-- Música de fondo (Reemplazar src por la canción deseada) -->
+    <!-- MÚSICA DE FONDO -->
+    <!-- Para cambiar la música, reemplaza el enlace dentro de "src" -->
     <audio id="bgMusic" loop>
-        <!-- Canción de caja de música/lofi como ejemplo. ¡Cámbiala por la tuya! -->
         <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=lullaby-music-box-9447.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Botón flotante de música -->
     <div class="music-control" id="musicBtn">
         <i class="fas fa-volume-mute" id="musicIcon"></i>
     </div>
 
-    <!-- Fondo de estrellas -->
+    <!-- Fondo de estrellas general de toda la página -->
     <div class="stars" id="stars-container"></div>
 
     <header>
-        <!-- Avión decorativo flotando arriba -->
-        <img src="av.png" alt="Avión" class="deco-side-right" style="top: 10%; right: 5%; border-radius: 50%; animation: floatSlow 8s infinite;">
+        <!-- Estrellitas destellantes exclusivas de la portada -->
+        <div id="cover-stars" class="cover-stars"></div>
 
+        <!-- ========================================================
+             1. IMAGEN PRINCIPAL DE LA PORTADA
+             - Para cambiar el tamaño, modifica el valor en max-width
+             ======================================================== -->
         <div class="hero-image-container fade-in-section is-visible">
-            <img src="4f58ef4f546bf1c9ecd7a29e761b6be7-removebg-preview.png" alt="El Principito" />
+            <img src="4f58ef4f546bf1c9ecd7a29e761b6be7-removebg-preview.png" alt="El Principito" style="max-width: 350px; width: 100%;" />
         </div>
-        <div class="fade-in-section is-visible">
+        
+        <div class="fade-in-section is-visible" style="position: relative; z-index: 2;">
             <h1>¡El primer Añito de Lucas!</h1>
-            <p class="subtitle">"Lo esencial es invisible a los ojos"</p>
+            <p class="subtitle">Te invito a festejar conmigo este día tan especial</p>
         </div>
     </header>
 
     <main>
-        <!-- Planeta decorativo central -->
-        <img src="pngwing.com (1).jpg" alt="Planeta" class="deco-img deco-planet fade-in-section">
+        <!-- ========================================================
+             2. PLANETA DECORATIVO (ANTES DE LA CUENTA REGRESIVA)
+             - Para agrandar/achicar, cambia max-width (ej: max-width: 300px;)
+             ======================================================== -->
+        <img src="pngwing.com (1).jpg" alt="Planeta" class="deco-img fade-in-section" style="max-width: 250px; opacity: 0.9;">
 
         <section class="countdown-wrapper fade-in-section">
             <div class="countdown-container">
@@ -529,8 +556,12 @@
             </div>
         </section>
 
-        <!-- Zorro decorativo intercalado -->
-        <img src="131-1317058_clipart-library-download-file-names-zorro-del-principito.png" alt="Zorro" class="deco-img fade-in-section">
+        <!-- ========================================================
+             3. AVIÓN VOLANDO (DEBAJO DE LA CUENTA REGRESIVA)
+             - Ahora es mucho más grande y tiene efecto de vuelo.
+             - Ajusta max-width a tu gusto (ej: max-width: 350px, max-width: 450px)
+             ======================================================== -->
+        <img src="av.png" alt="Avión Volando" class="deco-plane-flying fade-in-section" style="max-width: 380px; width: 85%;">
 
         <section class="event-details fade-in-section">
             <h2 style="font-size: 2.2rem; color: #1e40af; margin-bottom: 2rem;">Cuándo y Dónde</h2>
@@ -550,17 +581,20 @@
             </div>
         </section>
         
-        <!-- Principito y zorro sentados -->
-        <img src="pngwing.com (71).png" alt="Principito y Zorro" class="deco-img fade-in-section">
+        <!-- ========================================================
+             4. PRINCIPITO Y ZORRO SENTADOS (DESPUÉS DEL LUGAR)
+             - Fue agrandada significativamente y mantiene el efecto flotante.
+             - Ajusta max-width para cambiar el tamaño.
+             ======================================================== -->
+        <img src="pngwing.com (71).png" alt="Principito y Zorro" class="deco-img fade-in-section" style="max-width: 350px; width: 85%;">
 
         <section class="gallery-section fade-in-section">
             <h2>Mis primeros momentos</h2>
             <p style="margin-bottom: 1.5rem; color: #475569; font-size: 0.9rem;">(Desliza para ver más y toca para ampliar)</p>
             
-            <!-- Carrusel Swiper -->
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <!-- 10 Fotos del niño (Se usan placeholders, el usuario debe cambiar los src) -->
+                    <!-- FOTOS DE LA GALERÍA: Cambia el src="..." por el archivo de tus fotos -->
                     <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/e0f2fe/5b92e5?text=Foto+de+Lucas+1" alt="Foto 1" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/bae6fd/1e3a8a?text=Foto+de+Lucas+2" alt="Foto 2" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/7dd3fc/1e40af?text=Foto+de+Lucas+3" alt="Foto 3" onclick="openModal(this.src)"></div>
@@ -572,7 +606,6 @@
                     <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/7dd3fc/1e40af?text=Foto+de+Lucas+9" alt="Foto 9" onclick="openModal(this.src)"></div>
                     <div class="swiper-slide"><img src="https://via.placeholder.com/600x600/e0f2fe/5b92e5?text=Foto+de+Lucas+10" alt="Foto 10" onclick="openModal(this.src)"></div>
                 </div>
-                <!-- Paginación y flechas -->
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next" style="color: var(--primary-color);"></div>
                 <div class="swiper-button-prev" style="color: var(--primary-color);"></div>
@@ -585,38 +618,42 @@
             <img class="modal-content" id="modalImg">
         </div>
 
-        <!-- Pájaros - Agrandada significativamente -->
-        <img src="pngwing.com (74).png" alt="Pájaros" class="deco-img deco-large fade-in-section">
-
-        <!-- Icono zorro abrazando cerca del final -->
-        <img src="Icon_Zorro.png" alt="Icono Zorro" class="deco-img fade-in-section" style="max-width: 100px;">
+        <!-- ========================================================
+             5. PRINCIPITO VOLANDO CON LOS PÁJAROS
+             - Se ha dejado esta sola como pediste (se quitó el zorro).
+             - Puedes ajustar el max-width para cambiar el tamaño.
+             ======================================================== -->
+        <img src="pngwing.com (74).png" alt="Pájaros" class="deco-img fade-in-section" style="max-width: 500px; width: 90%; animation: floatSlow 7s infinite;">
 
         <section class="buttons-section fade-in-section">
             <h2 style="font-size: 2.2rem; color: #1e40af;">¡Espero verte!</h2>
             <p style="margin-bottom: 20px; color: #475569;">Por favor, confirma tu asistencia para que podamos preparar todo.</p>
             
+            <!-- Cambia el link de href por tu link de Google Maps -->
             <a href="https://maps.google.com" target="_blank" class="btn btn-location">
                 <i class="fas fa-map-marked-alt"></i> Cómo llegar al lugar
             </a>
             
+            <!-- Cambia el link de href por tu link de WhatsApp o Formulario -->
             <a href="https://forms.google.com" target="_blank" class="btn btn-rsvp">
                 <i class="fas fa-paper-plane"></i> Confirmar Asistencia
             </a>
         </section>
         
-        <!-- Rosa decorativa al final -->
-        <img src="pngwing.com (75).jpg" alt="Rosa" class="deco-img fade-in-section" style="border-radius: 15px;">
+        <!-- ========================================================
+             6. ROSA DECORATIVA (FINAL DE LA PÁGINA)
+             ======================================================== -->
+        <img src="pngwing.com (75).jpg" alt="Rosa" class="deco-img fade-in-section" style="max-width: 150px; border-radius: 15px;">
     </main>
 
-    <footer>
-        <p>Con mucho amor para Lucas ❤️</p>
-    </footer>
+    <!-- Footer vacío según lo solicitado -->
+    <footer></footer>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script>
-        // --- 1. Generador de Estrellas ---
+        // --- 1. Generador de Estrellas Generales ---
         function createStars() {
             const container = document.getElementById('stars-container');
             const count = 40; 
@@ -633,7 +670,26 @@
         }
         createStars();
 
-        // --- 2. Cuenta Regresiva ---
+        // --- 2. Generador de Estrellas Destellantes (Portada) ---
+        function createCoverStars() {
+            const container = document.getElementById('cover-stars');
+            const count = 50; // Cantidad de estrellas mágicas en la portada
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('cover-star');
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                container.appendChild(star);
+            }
+        }
+        createCoverStars();
+
+        // --- 3. Cuenta Regresiva ---
         const birthdayDate = new Date(2026, 10, 15, 16, 0, 0).getTime();
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
@@ -651,7 +707,7 @@
             document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // --- 3. Inicializar Carrusel (Swiper) ---
+        // --- 4. Inicializar Carrusel (Swiper) ---
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             grabCursor: true,
@@ -678,22 +734,17 @@
             },
         });
 
-        // --- 4. Lógica del Modal (Lightbox) y Botón "Atrás" ---
+        // --- 5. Lógica del Modal (Lightbox) y Botón "Atrás" ---
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
         let isModalOpen = false;
 
         function openModal(src) {
             modal.style.display = "flex";
-            // Pequeño delay para la animación css
             setTimeout(() => { modal.classList.add("show"); }, 10);
             modalImg.src = src;
             isModalOpen = true;
-            
-            // Empujar un nuevo estado al historial del navegador
             history.pushState({ modalOpen: true }, "", "#foto-ampliada");
-            
-            // Pausar el autoplay del carrusel mientras se ve la foto
             swiper.autoplay.stop();
         }
 
@@ -704,22 +755,19 @@
             swiper.autoplay.start();
         }
 
-        // Si el usuario presiona el botón "Atrás" del celular/navegador
         window.addEventListener("popstate", function(event) {
             if (isModalOpen) {
-                closeModal(); // Cierra el modal en vez de salir de la página
+                closeModal(); 
             }
         });
 
-        // Cerrar modal al hacer clic fuera de la imagen
         modal.addEventListener('click', function(e) {
             if(e.target !== modalImg && e.target !== document.querySelector('.close-modal')) {
-                // Para que el historial quede limpio, simulamos presionar atrás
                 history.back(); 
             }
         });
 
-        // --- 5. Animación al Scroll ---
+        // --- 6. Animación al Scroll ---
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -733,27 +781,23 @@
             if(!section.classList.contains('is-visible')) observer.observe(section);
         });
 
-        // --- 6. Control de Música con Autoplay ---
+        // --- 7. Control de Música con Autoplay ---
         const audio = document.getElementById("bgMusic");
         const musicBtn = document.getElementById("musicBtn");
         const musicIcon = document.getElementById("musicIcon");
 
-        // Intentar autoplay (la mayoría de navegadores lo bloquean si no hay interacción previa, por eso el botón es crucial)
         window.addEventListener('DOMContentLoaded', () => {
             let playPromise = audio.play();
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    // Autoplay funcionó
                     musicIcon.classList.remove('fa-volume-mute');
                     musicIcon.classList.add('fa-volume-up');
                 }).catch(error => {
-                    // Autoplay fue prevenido. Esperar a que el usuario haga clic
-                    console.log("Autoplay prevenido por el navegador. El usuario debe activar el audio.");
+                    console.log("Autoplay prevenido. El usuario debe interactuar.");
                 });
             }
         });
 
-        // Toggle música al hacer clic en el botón
         musicBtn.addEventListener("click", () => {
             if (audio.paused) {
                 audio.play();
@@ -766,14 +810,12 @@
             }
         });
         
-        // Iniciar música en el primer clic/toque en la pantalla (como fallback para el autoplay)
         document.body.addEventListener('click', function initAudio() {
             if (audio.paused && musicIcon.classList.contains('fa-volume-mute')) {
                 audio.play();
                 musicIcon.classList.remove('fa-volume-mute');
                 musicIcon.classList.add('fa-volume-up');
             }
-            // Eliminar el event listener después del primer toque
             document.body.removeEventListener('click', initAudio);
         }, { once: true });
 
